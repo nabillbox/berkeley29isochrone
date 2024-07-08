@@ -1,0 +1,24 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+df = pd.read_csv('ubv berkeley 29 webda.csv', skiprows = [1], header = 0)
+  df
+
+datas = df[df['Ref']!=78]
+
+V = datas['V']
+BV = datas['BV']
+
+refs = df[df['Ref']==78]
+V_refs = refs['V']
+BV_refs = refs['BV'] 
+
+plt.figure()
+plt.scatter(BV, V, s=2, color='r', marker='.')
+plt.scatter(BV_refs, V_refs, s=2, color='k', marker='.')
+plt.title("HR Diagram of Berkeley 29 (WEBDA)")
+plt.xlabel("B-V [mag]")
+plt.ylabel(r"$M_v$ [mag]")
+plt.gca().invert_yaxis()
+plt.show()
